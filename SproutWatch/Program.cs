@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SproutWatch.Data;
 
@@ -15,6 +16,18 @@ namespace SproutWatch
             // Database
             builder.Services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            // Identity
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(
+                options =>
+                {
+                    // Configuring password requesits
+                    options.Password.RequiredLength = 6;
+                    options.Password.RequireUppercase = true;
+                    options.Password.RequireLowercase = true;
+                    options.Password.RequireDigit = true;
+                    options.Password.RequireNonAlphanumeric = true;
+                });
 
             var app = builder.Build();
 

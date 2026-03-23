@@ -6,6 +6,7 @@ namespace SproutWatch
 {
     public class Program
     {
+        // Testing new setup
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
